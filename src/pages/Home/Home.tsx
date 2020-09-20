@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { BaseThemeContext } from '../../providers';
-import { UserActions } from '../../state/actions';
+import { themeState, toggledThemeState } from '../../state';
 
 const Container = styled.div`
   align-items: center;
@@ -17,19 +16,15 @@ const Container = styled.div`
 `;
 
 export const Home = () => {
-  const dispatch = useDispatch();
-  const { theme, toggleTheme } = useContext(BaseThemeContext);
-
-  useEffect(() => {
-    dispatch(UserActions.setLoggedUser());
-  }, [dispatch]);
+  const [theme, setTheme] = useRecoilState(themeState);
+  const toggledTheme = useRecoilValue(toggledThemeState);
 
   return (
     <Container>
       <FontAwesomeIcon
         size="3x"
         icon={theme.id === 'dark_theme' ? 'moon' : 'sun'}
-        onClick={toggleTheme}
+        onClick={() => setTheme(toggledTheme)}
         color={theme.id === 'dark_theme' ? 'white' : 'yellow'}
       />
     </Container>

@@ -11,6 +11,6 @@ export const getLocalStorageTheme = (): Theme => {
   return lightTheme;
 };
 
-export const changeLocalStorageTheme = (theme: ThemeOptions): void => {
-  window.localStorage.setItem('theme', theme);
+export const changeLocalStorageTheme = (themeId: ThemeOptions): void => {
+  window.localStorage.setItem('theme', themeId);
 };

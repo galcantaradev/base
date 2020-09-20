@@ -1,36 +1,29 @@
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
-import { applyMiddleware, createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { useRecoilValue } from 'recoil';
+import { ThemeProvider } from 'styled-components';
 
 import { ErrorBoundary } from './pages';
-import { BaseThemeProvider } from './providers';
 import { Routes } from './routes';
-import rootReducer from './state';
+import { themeState } from './state/atoms/themeState';
 import { defaultLocale, locale } from './utils';
-
-const middlewares = composeWithDevTools(applyMiddleware(thunk));
-const store = createStore(rootReducer, middlewares);
 
 const App = () => {
   const history = createBrowserHistory();
+  const theme = useRecoilValue(themeState);
 
   return (
-    <Provider store={store}>
-      <IntlProvider locale={locale} defaultLocale={defaultLocale}>
-        <BaseThemeProvider>
-          <Router history={history}>
-            <ErrorBoundary>
-              <Routes />
-            </ErrorBoundary>
-          </Router>
-        </BaseThemeProvider>
-      </IntlProvider>
-    </Provider>
+    <IntlProvider locale={locale} defaultLocale={defaultLocale}>
+      <ThemeProvider theme={theme.colors}>
+        <Router history={history}>
+          <ErrorBoundary>
+            <Routes />
+          </ErrorBoundary>
+        </Router>
+      </ThemeProvider>
+    </IntlProvider>
   );
 };
 

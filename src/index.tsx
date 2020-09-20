@@ -3,13 +3,16 @@ import './icons/IconsLibrary';
 
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { RecoilRoot } from 'recoil';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = (
   <StrictMode>
-    <App />
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </StrictMode>
 );
 
