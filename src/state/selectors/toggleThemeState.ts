@@ -8,12 +8,15 @@ import {
 } from '../../theme';
 import { themeState } from '../atoms';
 
-export const toggledThemeState = selector<Theme>({
-  key: 'toggledThemeState',
+export const toggleThemeState = selector<() => Theme>({
+  key: 'toggleThemeState',
   get: ({ get }) => {
-    const theme = get<Theme>(themeState);
-    changeLocalStorageTheme(theme.id);
+    return () => {
+      const theme = get<Theme>(themeState);
+      const toggledTheme = theme.id === 'light_theme' ? darkTheme : lightTheme;
+      changeLocalStorageTheme(toggledTheme.id);
 
-    return theme.id === 'light_theme' ? darkTheme : lightTheme;
+      return toggledTheme;
+    };
   }
 });

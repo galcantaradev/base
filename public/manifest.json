@@ -1,6 +1,6 @@
 {
-  "short_name": "Base",
-  "name": "Base",
+  "short_name": "Base Client",
+  "name": "Base Client",
   "icons": [
     {
       "src": "favicon.ico",
