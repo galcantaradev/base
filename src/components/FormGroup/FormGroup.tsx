@@ -1,18 +1,20 @@
-import React, { ReactNode } from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import styled from 'styled-components';
 
-export type FormGroupProps = {
+export type FormGroupProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
+  ref?: any;
   children: ReactNode;
-  className?: string;
 };
 
-export const FormGroup = ({
-  children,
-  className = '',
-  ...props
-}: FormGroupProps) => {
-  return (
-    <div className={`form-group ${className}`} {...props}>
-      {children}
-    </div>
-  );
+export const StyledFormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`;
+
+export const FormGroup = ({ children, ...props }: FormGroupProps) => {
+  return <StyledFormGroup {...props}>{children}</StyledFormGroup>;
 };

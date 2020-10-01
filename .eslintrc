@@ -23,8 +23,8 @@
       }
     ],
     "react/prop-types": "off",
-    "no-console": "warn",
-    "quotes": [2, "single"],
+    "no-console": "off",
+    "quotes": [2, "single", { "avoidEscape": true }],
     "@typescript-eslint/semi": ["error", "always"],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",

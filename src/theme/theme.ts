@@ -14,7 +14,8 @@ export const darkTheme: Theme = {
     primary: '#eeeeee',
     secondary: '#393e46',
     backgroundColor: '#232931',
-    detailColor: '#4ecca3'
+    detailColor: '#4ecca3',
+    errorColor: '#ff5b5b'
   }
 };
 
@@ -24,6 +25,7 @@ export const lightTheme: Theme = {
     primary: '#1b262c',
     secondary: '#0f4c75',
     backgroundColor: 'lightskyblue', // #eeeeee
-    detailColor: '#4ecca3'
+    detailColor: '#4ecca3',
+    errorColor: '#ff5b5b'
   }
 };
