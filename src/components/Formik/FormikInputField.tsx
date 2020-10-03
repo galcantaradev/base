@@ -19,11 +19,10 @@ export const FormikInputField = (props: FormikInputFieldProps) => {
     <FormGroup>
       <Label htmlFor={field.name}>{props.label}</Label>
       <Input
-        {...field}
         {...props}
-        id={field.name}
-        name={field.name}
-        onChange={field.onChange}
+        {...field}
+        hasError={hasError}
+        data-testid={`testid-${field.name}`}
       />
       {hasError ? <ErrorMessage>{meta.error}</ErrorMessage> : null}
     </FormGroup>

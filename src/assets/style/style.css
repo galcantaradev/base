@@ -1,2 +1,6 @@
 @import 'reset.css';
 @import 'grid.css';
+
+* {
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+}
