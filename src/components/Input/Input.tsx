@@ -1,23 +1,39 @@
 import React, { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
+import { ErrorMessage, FormGroup, Label } from '../';
+
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
   name: string;
-  hasError?: boolean;
+  label?: string;
+  error?: string;
 };
 
 const StyledInput = styled.input<InputProps>`
   border-color: ${props =>
-    !props.hasError ? props.theme.borderColor : props.theme.errorColor};
+    !!props.error ? props.theme.errorColor : props.theme.defaultBorderColor};
   border-radius: 4px;
   border-style: solid;
   border-width: 1px;
   box-shadow: 2px 4px 4px 0 ${props => props.theme.shadowColor};
   height: 36px;
   padding: 10px;
+
+  :disabled {
+    background: ${props => props.theme.disabledColor};
+    color: ${props => props.theme.disabledTextColor};
+    cursor: not-allowed;
+  }
 `;
 
 export const Input = (props: InputProps) => {
-  return <StyledInput {...props} />;
+  const { name, label, error, ...rest } = props;
+
+  return (
+    <FormGroup>
+      <Label htmlFor={name}>{label}</Label>
+      <StyledInput name={name} {...rest} />
+      {!!error ? <ErrorMessage>{error}</ErrorMessage> : null}
+    </FormGroup>
+  );
 };

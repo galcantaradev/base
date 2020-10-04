@@ -1,10 +1,13 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 
-import { Container, FormikInputField } from '../../components';
+import { Button, FormikInputField } from '../../components';
+import { useTheme } from '../../hooks';
 import { registerValidationSchema } from './';
 
 export const Register = () => {
+  const { toggleTheme } = useTheme();
+
   return (
     <Formik
       initialValues={{}}
@@ -13,11 +16,13 @@ export const Register = () => {
     >
       {() => {
         return (
-          <Container>
-            <Form>
-              <FormikInputField name="name" label="Name" />
-            </Form>
-          </Container>
+          <Form>
+            <button type="button" onClick={toggleTheme}>
+              toggle
+            </button>
+            <FormikInputField name="name" label="Name" />
+            <Button>register</Button>
+          </Form>
         );
       }}
     </Formik>

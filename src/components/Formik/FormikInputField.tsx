@@ -1,11 +1,9 @@
 import { useField } from 'formik';
 import React, { useMemo } from 'react';
 
-import { ErrorMessage, FormGroup, Input, InputProps, Label } from '../';
+import { Input, InputProps } from '../';
 
-export type FormikInputFieldProps = InputProps & {
-  fast?: boolean;
-};
+export type FormikInputFieldProps = InputProps;
 
 export const FormikInputField = (props: FormikInputFieldProps) => {
   const [field, meta] = useField(props);
@@ -16,15 +14,11 @@ export const FormikInputField = (props: FormikInputFieldProps) => {
   ]);
 
   return (
-    <FormGroup>
-      <Label htmlFor={field.name}>{props.label}</Label>
-      <Input
-        {...props}
-        {...field}
-        hasError={hasError}
-        data-testid={`testid-${field.name}`}
-      />
-      {hasError ? <ErrorMessage>{meta.error}</ErrorMessage> : null}
-    </FormGroup>
+    <Input
+      {...props}
+      {...field}
+      error={hasError ? meta.error : ''}
+      data-testid={`testid-${field.name}`}
+    />
   );
 };

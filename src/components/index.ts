@@ -1,3 +1,4 @@
+export * from './Button';
 export * from './Container';
 export * from './ErrorMessage';
 export * from './FormattedCurrency';

@@ -3,10 +3,14 @@ export type ThemeOptions = 'dark_theme' | 'light_theme';
 export type Theme = {
   id: ThemeOptions;
   colors: {
+    primary: string;
     textColor: string;
     backgroundColor: string;
     errorColor: string;
     shadowColor: string;
-    borderColor: string;
+    defaultBorderColor: string;
+    boxShadowHoverColor: string;
+    disabledColor: string;
+    disabledTextColor: string;
   };
 };
