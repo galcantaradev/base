@@ -12,12 +12,12 @@ type ColSizes = {
 
 type PartialColProps = Partial<ColSizes> & {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 type RequiredColProps = ColSizes & {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export type ColProps = PartialColProps | RequiredColProps;

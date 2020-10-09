@@ -7,6 +7,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
   label?: string;
   error?: string;
+  width: number;
 };
 
 const StyledInput = styled.input<InputProps>`
@@ -18,11 +19,17 @@ const StyledInput = styled.input<InputProps>`
   box-shadow: 2px 4px 4px 0 ${props => props.theme.shadowColor};
   height: 36px;
   padding: 10px;
+  width: ${props => props.width}px;
 
   :disabled {
     background: ${props => props.theme.disabledColor};
     color: ${props => props.theme.disabledTextColor};
     cursor: not-allowed;
+  }
+
+  :focus {
+    border-color: ${props => props.theme.primary};
+    outline: none;
   }
 `;
 
@@ -32,7 +39,7 @@ export const Input = (props: InputProps) => {
   return (
     <FormGroup>
       <Label htmlFor={name}>{label}</Label>
-      <StyledInput name={name} {...rest} />
+      <StyledInput name={name} error={error} {...rest} />
       {!!error ? <ErrorMessage>{error}</ErrorMessage> : null}
     </FormGroup>
   );

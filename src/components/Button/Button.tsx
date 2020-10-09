@@ -7,6 +7,7 @@ export type ButtonProps = DetailedHTMLProps<
   HTMLButtonElement
 > & {
   ref?: any;
+  width?: number;
 };
 
 const StyledButton = styled.button<ButtonProps>`
@@ -17,9 +18,9 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   height: 36px;
   letter-spacing: 0.5px;
-  min-width: 270px;
   padding: 0 16px;
   text-align: center;
+  width: ${props => `${props.width}px`};
 
   :active {
     background: ${props => props.theme.primary};

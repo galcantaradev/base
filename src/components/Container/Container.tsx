@@ -14,27 +14,20 @@ export type ContainerProps = React.DetailedHTMLProps<
 };
 
 const StyledContainer = styled.div<ContainerProps>`
+  background-color: ${props => props.theme.backgroundColor};
   display: flex;
   flex-direction: column;
   font-size: ${props => props.fontSize}px;
-  background-color: ${props => props.theme.backgroundColor};
   height: 100vh;
+  min-height: 100vh;
   width: 100%;
 `;
 
-export const Container = ({
-  children,
-  className = '',
-  ...props
-}: ContainerProps) => {
+export const Container = ({ children, ...props }: ContainerProps) => {
   const fontSize = useRecoilValue(fontSizeState);
 
   return (
-    <StyledContainer
-      {...props}
-      className={`container ${className}`}
-      fontSize={fontSize}
-    >
+    <StyledContainer {...props} fontSize={fontSize}>
       {children}
     </StyledContainer>
   );

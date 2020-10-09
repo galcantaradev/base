@@ -5,7 +5,6 @@ import { Router } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
-import { Container } from './components';
 import { ErrorBoundary } from './pages';
 import { Routes } from './routes';
 import { themeState } from './state/atoms/themeState';
@@ -21,9 +20,7 @@ const App = () => {
       <ThemeProvider theme={theme.colors}>
         <Router history={history}>
           <ErrorBoundary>
-            <Container>
-              <Routes />
-            </Container>
+            <Routes />
           </ErrorBoundary>
         </Router>
       </ThemeProvider>

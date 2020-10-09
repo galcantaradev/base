@@ -1,9 +1,9 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 
-import { Button, FormikInputField } from '../../components';
+import { Button, Container, FormikInputField } from '../../components';
 import { useTheme } from '../../hooks';
-import { registerValidationSchema } from './';
+import { registerValidationSchema } from './registerValidationSchema';
 
 export const Register = () => {
   const { toggleTheme } = useTheme();
@@ -16,13 +16,15 @@ export const Register = () => {
     >
       {() => {
         return (
-          <Form>
-            <button type="button" onClick={toggleTheme}>
-              toggle
-            </button>
-            <FormikInputField name="name" label="Name" />
-            <Button>register</Button>
-          </Form>
+          <Container>
+            <Form>
+              <button type="button" onClick={toggleTheme}>
+                toggle
+              </button>
+              <FormikInputField name="name" label="Name" width={400} />
+              <Button>register</Button>
+            </Form>
+          </Container>
         );
       }}
     </Formik>
