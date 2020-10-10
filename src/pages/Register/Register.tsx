@@ -59,7 +59,6 @@ export const Register = ({ history }: Props) => {
         validationSchema={() => registerValidationSchema}
       >
         {formProps => {
-          console.log(formProps.isSubmitting);
           return (
             <Form>
               <FormikInputField
@@ -92,7 +91,7 @@ export const Register = ({ history }: Props) => {
               </Flex>
               <Button
                 width={400}
-                onClick={formProps.submitForm}
+                type="submit"
                 loading={formProps.isSubmitting}
               >
                 register

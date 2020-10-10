@@ -24,10 +24,13 @@ export const Login = ({ history }: Props) => {
     options: UserLoginInput,
     actions: FormikHelpers<UserLoginInput>
   ) => {
-    const { data } = await login({ options });
+    const { data } = await login({ options }, { pollInterval: 1 });
+    const errors = data?.login.errors;
 
-    if (data?.login.errors) {
-      actions.setErrors(fieldErrorsToFormikErrors(data?.login.errors));
+    if (errors) {
+      const formikErrors = fieldErrorsToFormikErrors(errors);
+      actions.setErrors(formikErrors);
+
       return;
     }
 
@@ -38,7 +41,7 @@ export const Login = ({ history }: Props) => {
     <LoginContainer>
       <Formik<UserLoginInput>
         onSubmit={onSubmit}
-        initialValues={{ email: '', password: '' }}
+        initialValues={{ email: 'galcantaradev@gmail.com', password: '123456' }}
         validationSchema={() => loginValidationSchema}
       >
         {formProps => {
@@ -62,7 +65,6 @@ export const Login = ({ history }: Props) => {
                 width={400}
                 type="submit"
                 loading={formProps.isSubmitting}
-                onClick={formProps.submitForm}
               >
                 login
               </Button>
