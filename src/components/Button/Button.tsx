@@ -1,11 +1,17 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { lighten } from 'polished';
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  MouseEvent
+} from 'react';
 import styled from 'styled-components';
 
 export type ButtonProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
+  loading?: boolean;
   ref?: any;
   width?: number;
 };
@@ -42,7 +48,19 @@ const StyledButton = styled.button<ButtonProps>`
 `;
 
 export const Button = (props: ButtonProps) => {
-  const { children, ...rest } = props;
+  const { children, loading = false, onClick, ...rest } = props;
 
-  return <StyledButton {...rest}>{children}</StyledButton>;
+  const handleClick = (
+    event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
+    if (!loading) {
+      return onClick?.(event);
+    }
+  };
+
+  return (
+    <StyledButton {...rest} onClick={handleClick}>
+      {loading ? <FontAwesomeIcon icon="spinner" size="lg" spin /> : children}
+    </StyledButton>
+  );
 };

@@ -12,9 +12,9 @@ export const darkTheme: Theme = {
   id: 'dark_theme',
   colors: {
     ...commonColors,
-    primary: '#9ab3f5',
-    backgroundColor: '#282c35',
-    shadowColor: 'rgba(26, 26, 27, .5)',
+    primary: '#91d18b',
+    backgroundColor: '#090a11',
+    shadowColor: 'rgba(0, 0, 0, 0)',
     textColor: '#fff'
   }
 };
@@ -23,7 +23,7 @@ export const lightTheme: Theme = {
   id: 'light_theme',
   colors: {
     ...commonColors,
-    primary: '#7579e7',
+    primary: '#91d18b',
     backgroundColor: '#fff',
     shadowColor: 'rgba(232, 232, 232, .5)',
     textColor: '#222331'

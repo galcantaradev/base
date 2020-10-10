@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { fontSizeState } from '../../state';
 
-export type ContainerProps = React.DetailedHTMLProps<
+export type FlexContainerProps = React.DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 > & {
@@ -14,7 +14,7 @@ export type ContainerProps = React.DetailedHTMLProps<
   fontSize?: number;
 };
 
-const StyledContainer = styled.div<ContainerProps>`
+const StyledFlexContainer = styled.div<FlexContainerProps>`
   background-color: ${props => lighten('.05', props.theme.backgroundColor)};
   display: flex;
   flex-direction: column;
@@ -24,12 +24,12 @@ const StyledContainer = styled.div<ContainerProps>`
   width: 100%;
 `;
 
-export const Container = ({ children, ...props }: ContainerProps) => {
+export const FlexContainer = ({ children, ...props }: FlexContainerProps) => {
   const fontSize = useRecoilValue(fontSizeState);
 
   return (
-    <StyledContainer {...props} fontSize={fontSize}>
+    <StyledFlexContainer {...props} fontSize={fontSize}>
       {children}
-    </StyledContainer>
+    </StyledFlexContainer>
   );
 };

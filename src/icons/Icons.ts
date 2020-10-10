@@ -1,1 +1,1 @@
-export { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+export { faSpinner } from '@fortawesome/free-solid-svg-icons';
