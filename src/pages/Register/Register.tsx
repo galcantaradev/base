@@ -1,32 +1,106 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikHelpers } from 'formik';
+import { History } from 'history';
 import React from 'react';
+import styled from 'styled-components';
 
-import { Button, Container, FormikInputField } from '../../components';
-import { useTheme } from '../../hooks';
+import { Button, FlexContainer, FormikInputField } from '../../components';
+import {
+  UserRegisterInput,
+  useRegisterMutation
+} from '../../generated/graphql';
+import { fieldErrorsToFormikErrors } from '../../utils';
 import { registerValidationSchema } from './registerValidationSchema';
 
-export const Register = () => {
-  const { toggleTheme } = useTheme();
+type Props = {
+  history: History;
+};
+
+const RegisterContainer = styled(FlexContainer)`
+  align-items: center;
+  justify-content: center;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Register = ({ history }: Props) => {
+  const [, register] = useRegisterMutation();
+
+  const onSubmit = async (
+    options: UserRegisterInput,
+    actions: FormikHelpers<UserRegisterInput>
+  ) => {
+    const { data } = await register({ options });
+    const errors = data?.register.errors;
+
+    if (errors) {
+      const formikErrors = fieldErrorsToFormikErrors(errors);
+      actions.setErrors(formikErrors);
+
+      return;
+    }
+
+    history.push('/');
+  };
 
   return (
-    <Formik
-      initialValues={{}}
-      onSubmit={values => console.log(values)}
-      validationSchema={() => registerValidationSchema}
-    >
-      {() => {
-        return (
-          <Container>
+    <RegisterContainer>
+      <Formik<UserRegisterInput>
+        onSubmit={onSubmit}
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+          passwordConfirmation: ''
+        }}
+        validationSchema={() => registerValidationSchema}
+      >
+        {formProps => {
+          console.log(formProps.isSubmitting);
+          return (
             <Form>
-              <button type="button" onClick={toggleTheme}>
-                toggle
-              </button>
-              <FormikInputField name="name" label="Name" width={400} />
-              <Button>register</Button>
+              <FormikInputField
+                name="name"
+                label="name"
+                width={400}
+                placeholder="name"
+              />
+              <FormikInputField
+                name="email"
+                label="email"
+                width={400}
+                placeholder="example@email.com"
+              />
+              <Flex>
+                <FormikInputField
+                  name="password"
+                  label="password"
+                  type="password"
+                  width={190}
+                  placeholder="******"
+                />
+                <FormikInputField
+                  name="passwordConfirmation"
+                  label="password confirmation"
+                  placeholder="******"
+                  type="password"
+                  width={190}
+                />
+              </Flex>
+              <Button
+                width={400}
+                onClick={formProps.submitForm}
+                loading={formProps.isSubmitting}
+              >
+                register
+              </Button>
             </Form>
-          </Container>
-        );
-      }}
-    </Formik>
+          );
+        }}
+      </Formik>
+    </RegisterContainer>
   );
 };

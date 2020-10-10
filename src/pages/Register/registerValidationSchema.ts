@@ -1,14 +1,13 @@
 import * as Yup from 'yup';
 
 export const registerValidationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required').trim(),
-  email: Yup.string().email('E-mail is invalid').required('E-mail is required'),
+  name: Yup.string().required('name is required').trim(),
+  email: Yup.string().email('email is invalid').required('email is required'),
   password: Yup.string()
-    .test('password', "Password can't be empty", value => !!value?.trim())
-    .required('Password is required')
-    .min(6, 'Password must be greater than 6'),
+    .required('password is required')
+    .min(6, 'password must be greater than 6'),
   passwordConfirmation: Yup.string().oneOf(
     [Yup.ref('password')],
-    'Passwords must match'
+    'passwords must match'
   )
 });
