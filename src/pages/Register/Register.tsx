@@ -92,7 +92,7 @@ export const Register = ({ history }: Props) => {
               </Flex>
               <Button
                 width={400}
-                onClick={formProps.submitForm}
+                type="submit"
                 loading={formProps.isSubmitting}
               >
                 register

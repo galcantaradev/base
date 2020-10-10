@@ -25,9 +25,12 @@ export const Login = ({ history }: Props) => {
     actions: FormikHelpers<UserLoginInput>
   ) => {
     const { data } = await login({ options });
+    const errors = data?.login.errors;
 
-    if (data?.login.errors) {
-      actions.setErrors(fieldErrorsToFormikErrors(data?.login.errors));
+    if (errors) {
+      const formikErrors = fieldErrorsToFormikErrors(errors);
+      actions.setErrors(formikErrors);
+
       return;
     }
 
@@ -62,7 +65,6 @@ export const Login = ({ history }: Props) => {
                 width={400}
                 type="submit"
                 loading={formProps.isSubmitting}
-                onClick={formProps.submitForm}
               >
                 login
               </Button>
