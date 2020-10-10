@@ -36,6 +36,7 @@ const StyledButton = styled.button<ButtonProps>`
   :focus,
   :hover {
     background: ${props => lighten('.02', props.theme.primary)};
+    outline-color: ${props => props.theme.primary};
     box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   }
 `;

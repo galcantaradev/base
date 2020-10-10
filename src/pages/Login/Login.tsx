@@ -1,13 +1,15 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikHelpers } from 'formik';
+import { History } from 'history';
 import React from 'react';
 import styled from 'styled-components';
 
 import { Button, Container, FormikInputField } from '../../components';
+import { UserLoginInput, useLoginMutation } from '../../generated/graphql';
+import { fieldErrorsToFormikErrors } from '../../utils';
 import { loginValidationSchema } from './loginValidationSchema';
 
-type FormikLoginValues = {
-  email: string;
-  password: string;
+type Props = {
+  history: History;
 };
 
 const LoginContainer = styled(Container)`
@@ -15,12 +17,26 @@ const LoginContainer = styled(Container)`
   justify-content: center;
 `;
 
-export const Login = () => {
-  const login = (values: FormikLoginValues) => {};
+export const Login = ({ history }: Props) => {
+  const [, login] = useLoginMutation();
+
+  const onSubmit = async (
+    options: UserLoginInput,
+    actions: FormikHelpers<UserLoginInput>
+  ) => {
+    const { data } = await login({ options });
+
+    if (data?.login.errors) {
+      actions.setErrors(fieldErrorsToFormikErrors(data?.login.errors));
+      return;
+    }
+
+    history.push('/');
+  };
 
   return (
-    <Formik<FormikLoginValues>
-      onSubmit={login}
+    <Formik<UserLoginInput>
+      onSubmit={onSubmit}
       initialValues={{ email: '', password: '' }}
       validationSchema={() => loginValidationSchema}
     >

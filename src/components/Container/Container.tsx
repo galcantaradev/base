@@ -1,3 +1,4 @@
+import { lighten } from 'polished';
 import React, { HTMLAttributes, ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -14,7 +15,7 @@ export type ContainerProps = React.DetailedHTMLProps<
 };
 
 const StyledContainer = styled.div<ContainerProps>`
-  background-color: ${props => props.theme.backgroundColor};
+  background-color: ${props => lighten('.05', props.theme.backgroundColor)};
   display: flex;
   flex-direction: column;
   font-size: ${props => props.fontSize}px;
