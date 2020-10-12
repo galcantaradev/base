@@ -7,4 +7,6 @@ export * from './Formik';
 export * from './Grid';
 export * from './Input';
 export * from './Label';
+export * from './NavBar';
+export * from './Switch';
 export * from './Table';

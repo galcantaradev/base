@@ -19,8 +19,8 @@ const StyledFlexContainer = styled.div<FlexContainerProps>`
   display: flex;
   flex-direction: column;
   font-size: ${props => props.fontSize}px;
-  height: 100vh;
-  min-height: 100vh;
+  min-height: calc(100vh - 55px);
+  overflow: hidden;
   width: 100%;
 `;
 

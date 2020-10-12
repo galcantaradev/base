@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { Provider, createClient } from 'urql';
 
+import { NavBar } from './components';
 import { ErrorBoundary } from './pages';
 import { Routes } from './routes';
 import { themeState } from './state/atoms/themeState';
@@ -28,6 +29,7 @@ const App = () => {
         <ThemeProvider theme={theme.colors}>
           <Router history={history}>
             <ErrorBoundary>
+              <NavBar />
               <Routes />
             </ErrorBoundary>
           </Router>

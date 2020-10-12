@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { FlexContainer } from '../../components';
+import { FlexContainer, Label } from '../../components';
 
 export const Home = () => {
   return (
     <FlexContainer>
-      <h1>Home works!</h1>;
+      <Label>home works</Label>
     </FlexContainer>
   );
 };

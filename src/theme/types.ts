@@ -12,5 +12,7 @@ export type Theme = {
     boxShadowHoverColor: string;
     disabledColor: string;
     disabledTextColor: string;
+    warningColor: string;
+    successColor: string;
   };
 };
