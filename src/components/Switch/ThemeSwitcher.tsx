@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { InputHTMLAttributes } from 'react';
+import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export type ThemeSwitcherProps = InputHTMLAttributes<HTMLInputElement> & {
@@ -40,9 +40,20 @@ const StyledLabel = styled.label`
 `;
 
 export const ThemeSwitcher = (props: ThemeSwitcherProps) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (props.onChange) {
+      props.onChange(event);
+    }
+  };
+
   return (
     <>
-      <StyledSwitch {...props} id={props.name} type="checkbox" />
+      <StyledSwitch
+        {...props}
+        id={props.name}
+        type="checkbox"
+        onChange={handleChange}
+      />
       <StyledLabel htmlFor={props.name}>
         <FontAwesomeIcon icon="moon" color="#f1c40f" />
         <FontAwesomeIcon icon="sun" color="#f1c40f" />

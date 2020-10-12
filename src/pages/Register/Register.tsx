@@ -1,11 +1,13 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import { History } from 'history';
 import React from 'react';
+import { Redirect } from 'react-router';
 import styled from 'styled-components';
 
 import { Button, FlexContainer, FormikInputField } from '../../components';
 import {
   UserRegisterInput,
+  useMeQuery,
   useRegisterMutation
 } from '../../generated/graphql';
 import { fieldErrorsToFormikErrors } from '../../utils';
@@ -27,7 +29,12 @@ const Flex = styled.div`
 `;
 
 export const Register = ({ history }: Props) => {
+  const [{ data }] = useMeQuery();
   const [, register] = useRegisterMutation();
+
+  if (data?.me) {
+    return <Redirect to="logged-in" />;
+  }
 
   const onSubmit = async (
     options: UserRegisterInput,
