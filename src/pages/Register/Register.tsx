@@ -66,7 +66,6 @@ export const Register = ({ history }: Props) => {
         validationSchema={() => registerValidationSchema}
       >
         {formProps => {
-          console.log(formProps.isSubmitting);
           return (
             <Form>
               <FormikInputField
