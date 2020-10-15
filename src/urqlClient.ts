@@ -6,6 +6,7 @@ import {
   LogoutMutation,
   MeDocument,
   MeQuery,
+  ProfileMutation,
   RegisterMutation
 } from './generated/graphql';
 
@@ -65,6 +66,22 @@ export const cache = cacheExchange({
 
             return {
               me: result.register?.user
+            };
+          }
+        );
+      },
+      profile(result, _, cache) {
+        updateQuery<ProfileMutation, MeQuery>(
+          { query: MeDocument },
+          cache,
+          result,
+          (result, data) => {
+            if (result.profile?.errors) {
+              return data;
+            }
+
+            return {
+              me: result.profile?.user
             };
           }
         );

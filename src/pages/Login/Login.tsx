@@ -4,7 +4,12 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
 
-import { Button, FlexContainer, FormikInputField } from '../../components';
+import {
+  Button,
+  FlexContainer,
+  FormikInputField,
+  SectionTitle
+} from '../../components';
 import {
   UserLoginInput,
   useLoginMutation,
@@ -57,6 +62,7 @@ export const Login = ({ history }: Props) => {
         {formProps => {
           return (
             <Form>
+              <SectionTitle>login</SectionTitle>
               <FormikInputField
                 width={400}
                 name="email"
@@ -69,7 +75,7 @@ export const Login = ({ history }: Props) => {
                 name="password"
                 type="password"
                 label="password"
-                placeholder="******"
+                placeholder="*******"
               />
               <Button
                 width={400}

@@ -33,7 +33,8 @@ const StyledInput = styled.input<InputProps>`
   }
 
   :focus {
-    border-color: ${props => props.theme.primary};
+    border-color: ${props =>
+      props.themeId === 'dark_theme' ? '#fff' : '#000'};
     outline: none;
   }
 `;

@@ -4,7 +4,12 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
 
-import { Button, FlexContainer, FormikInputField } from '../../components';
+import {
+  Button,
+  FlexContainer,
+  FormikInputField,
+  SectionTitle
+} from '../../components';
 import {
   UserRegisterInput,
   useMeQuery,
@@ -68,17 +73,18 @@ export const Register = ({ history }: Props) => {
         {formProps => {
           return (
             <Form>
-              <FormikInputField
-                name="name"
-                label="name"
-                width={400}
-                placeholder="name"
-              />
+              <SectionTitle>register</SectionTitle>
               <FormikInputField
                 name="email"
                 label="email"
                 width={400}
                 placeholder="example@email.com"
+              />
+              <FormikInputField
+                name="name"
+                label="name"
+                width={400}
+                placeholder="name"
               />
               <Flex>
                 <FormikInputField
@@ -86,12 +92,12 @@ export const Register = ({ history }: Props) => {
                   label="password"
                   type="password"
                   width={190}
-                  placeholder="******"
+                  placeholder="*******"
                 />
                 <FormikInputField
                   name="passwordConfirmation"
                   label="password confirmation"
-                  placeholder="******"
+                  placeholder="*******"
                   type="password"
                   width={190}
                 />

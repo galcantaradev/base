@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ThemeSwitcher } from '../../components';
@@ -46,7 +46,6 @@ const StyledNav = styled.nav`
 export const NavBar = () => {
   const [{ data }] = useMeQuery();
   const [, logout] = useLogoutMutation();
-  const { push } = useHistory();
   const { theme, toggleTheme } = useTheme();
 
   let body = null;
@@ -54,8 +53,12 @@ export const NavBar = () => {
   if (data?.me) {
     body = (
       <>
-        <li>{data?.me.name}</li>
-        <li onClick={() => logout().then(() => push('/'))}>logout</li>
+        <li>
+          <Link to="profile">{data?.me.name}</Link>
+        </li>
+        <li onClick={() => logout()}>
+          <Link to="/">logout</Link>
+        </li>
       </>
     );
   } else {

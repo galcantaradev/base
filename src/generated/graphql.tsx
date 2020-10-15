@@ -33,6 +33,7 @@ export type Mutation = {
   register: UserResponse;
   login: UserResponse;
   logout: Scalars['Boolean'];
+  profile?: Maybe<UserResponse>;
 };
 
 export type MutationRegisterArgs = {
@@ -41,6 +42,10 @@ export type MutationRegisterArgs = {
 
 export type MutationLoginArgs = {
   options: UserLoginInput;
+};
+
+export type MutationProfileArgs = {
+  options: UserProfileInput;
 };
 
 export type UserResponse = {
@@ -65,6 +70,12 @@ export type UserRegisterInput = {
 export type UserLoginInput = {
   email: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type UserProfileInput = {
+  name: Scalars['String'];
+  email?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
 };
 
 export type RegularErrorFragment = { __typename?: 'FieldError' } & Pick<
@@ -96,6 +107,16 @@ export type LogoutMutation = { __typename?: 'Mutation' } & Pick<
   Mutation,
   'logout'
 >;
+
+export type ProfileMutationVariables = Exact<{
+  options: UserProfileInput;
+}>;
+
+export type ProfileMutation = { __typename?: 'Mutation' } & {
+  profile?: Maybe<
+    { __typename?: 'UserResponse' } & RegularUserResponseFragment
+  >;
+};
 
 export type RegisterMutationVariables = Exact<{
   options: UserRegisterInput;
@@ -157,6 +178,20 @@ export const LogoutDocument = gql`
 export function useLogoutMutation() {
   return Urql.useMutation<LogoutMutation, LogoutMutationVariables>(
     LogoutDocument
+  );
+}
+export const ProfileDocument = gql`
+  mutation Profile($options: UserProfileInput!) {
+    profile(options: $options) {
+      ...RegularUserResponse
+    }
+  }
+  ${RegularUserResponseFragmentDoc}
+`;
+
+export function useProfileMutation() {
+  return Urql.useMutation<ProfileMutation, ProfileMutationVariables>(
+    ProfileDocument
   );
 }
 export const RegisterDocument = gql`

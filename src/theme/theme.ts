@@ -25,7 +25,7 @@ export const lightTheme: Theme = {
   id: 'light_theme',
   colors: {
     ...commonTheme,
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     shadowColor: 'rgba(232, 232, 232, .5)',
     textColor: '#222331'
   }

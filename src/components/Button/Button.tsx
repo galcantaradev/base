@@ -40,22 +40,17 @@ const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   width: ${props => `${props.width}px`};
 
-  :active {
-    background: ${props => props.theme.primary};
-    box-shadow: none;
-  }
-
   :disabled {
-    cursor: not-allowed;
     background: ${props => props.theme.disabledColor};
     color: ${props => props.theme.disabledTextColor};
+    cursor: not-allowed;
   }
 
   :focus,
   :hover {
-    background: ${props => lighten('.02', props.theme.primary)};
-    outline-color: ${props => props.theme.primary};
+    background: ${props => lighten('.02', variants[props.variant!])};
     box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
+    outline-color: ${props => variants[props.variant!]};
   }
 `;
 
