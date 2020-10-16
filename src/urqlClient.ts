@@ -10,11 +10,11 @@ import {
   RegisterMutation
 } from './generated/graphql';
 
-export function updateQuery<Result, Data>(
+export function updateQuery<Result, Query>(
   query: QueryInput,
   cache: Cache,
   result: any,
-  updater: (result: Result, data: Data) => Data
+  updater: (result: Result, data: Query) => Query
 ) {
   return cache.updateQuery(query, data => updater(result, data as any) as any);
 }
@@ -43,15 +43,7 @@ export const cache = cacheExchange({
           { query: MeDocument },
           cache,
           result,
-          (result, data) => {
-            if (!result.logout) {
-              return data;
-            }
-
-            return {
-              me: null
-            };
-          }
+          () => ({ me: null })
         );
       },
       register(result, _, cache) {

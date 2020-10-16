@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Provider value={urqlClient}>
       <IntlProvider locale={locale} defaultLocale={defaultLocale}>
-        <ThemeProvider theme={theme.colors}>
+        <ThemeProvider theme={{ ...theme.colors, themeId: theme.id }}>
           <Router history={history}>
             <ErrorBoundary>
               <NavBar />
