@@ -54,7 +54,7 @@ export const NavBar = () => {
     body = (
       <>
         <li>
-          <Link to="profile">{data?.me.name}</Link>
+          <Link to="/profile">{data?.me.name}</Link>
         </li>
         <li onClick={() => logout()}>
           <Link to="/">logout</Link>
@@ -65,10 +65,10 @@ export const NavBar = () => {
     body = (
       <>
         <li>
-          <Link to="login">login</Link>
+          <Link to="/login">login</Link>
         </li>
         <li>
-          <Link to="register">register</Link>
+          <Link to="/register">register</Link>
         </li>
       </>
     );

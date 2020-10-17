@@ -2,6 +2,7 @@ import { Cache, QueryInput, cacheExchange } from '@urql/exchange-graphcache';
 import { createClient, dedupExchange, fetchExchange } from 'urql';
 
 import {
+  ChangePasswordMutation,
   LoginMutation,
   LogoutMutation,
   MeDocument,
@@ -14,9 +15,16 @@ export function updateQuery<Result, Query>(
   query: QueryInput,
   cache: Cache,
   result: any,
+  mutation: string,
   updater: (result: Result, data: Query) => Query
 ) {
-  return cache.updateQuery(query, data => updater(result, data as any) as any);
+  return cache.updateQuery(query, data => {
+    if (result[mutation]?.errors) {
+      return data;
+    }
+
+    return updater(result, data as any) as any;
+  });
 }
 
 export const cache = cacheExchange({
@@ -27,15 +35,8 @@ export const cache = cacheExchange({
           { query: MeDocument },
           cache,
           result,
-          (result, data) => {
-            if (result.login?.errors) {
-              return data;
-            }
-
-            return {
-              me: result.login?.user
-            };
-          }
+          'login',
+          result => ({ me: result.login?.user })
         );
       },
       logout(result, _, cache) {
@@ -43,6 +44,7 @@ export const cache = cacheExchange({
           { query: MeDocument },
           cache,
           result,
+          'logout',
           () => ({ me: null })
         );
       },
@@ -51,15 +53,8 @@ export const cache = cacheExchange({
           { query: MeDocument },
           cache,
           result,
-          (result, data) => {
-            if (result.register?.errors) {
-              return data;
-            }
-
-            return {
-              me: result.register?.user
-            };
-          }
+          'register',
+          result => ({ me: result.register?.user })
         );
       },
       profile(result, _, cache) {
@@ -67,15 +62,17 @@ export const cache = cacheExchange({
           { query: MeDocument },
           cache,
           result,
-          (result, data) => {
-            if (result.profile?.errors) {
-              return data;
-            }
-
-            return {
-              me: result.profile?.user
-            };
-          }
+          'profile',
+          result => ({ me: result.profile?.user })
+        );
+      },
+      changePassword(result: any, _, cache) {
+        updateQuery<ChangePasswordMutation, MeQuery>(
+          { query: MeDocument },
+          cache,
+          result,
+          'changePassword',
+          result => ({ me: result?.changePassword?.user })
         );
       }
     }

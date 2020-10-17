@@ -38,7 +38,7 @@ export const Register = ({ history }: Props) => {
   const [, register] = useRegisterMutation();
 
   if (data?.me) {
-    return <Redirect to="logged-in" />;
+    return <Redirect to="/logged-in" />;
   }
 
   const onSubmit = async (

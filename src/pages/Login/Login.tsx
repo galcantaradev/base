@@ -2,6 +2,7 @@ import { Form, Formik, FormikHelpers } from 'formik';
 import { History } from 'history';
 import React from 'react';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -27,12 +28,25 @@ const LoginContainer = styled(FlexContainer)`
   justify-content: center;
 `;
 
+const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  a {
+    color: ${props => props.theme.textColor};
+    margin-bottom: 15px;
+    margin-top: -14px;
+    text-decoration: none;
+  }
+`;
+
 export const Login = ({ history }: Props) => {
   const [, login] = useLoginMutation();
   const [{ data }] = useMeQuery();
 
   if (data?.me) {
-    return <Redirect to="logged-in" />;
+    return <Redirect to="/logged-in" />;
   }
 
   const onSubmit = async (
@@ -77,6 +91,9 @@ export const Login = ({ history }: Props) => {
                 label="password"
                 placeholder="*******"
               />
+              <LinkContainer>
+                <Link to="/forgot-password">forgot password?</Link>
+              </LinkContainer>
               <Button
                 width={400}
                 type="submit"

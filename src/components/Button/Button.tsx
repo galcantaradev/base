@@ -60,6 +60,7 @@ export const Button = (props: ButtonProps) => {
     loading = false,
     onClick,
     variant = 'primary',
+    type = 'button',
     ...rest
   } = props;
 
@@ -72,7 +73,7 @@ export const Button = (props: ButtonProps) => {
   };
 
   return (
-    <StyledButton {...rest} onClick={handleClick} variant={variant}>
+    <StyledButton {...rest} onClick={handleClick} type={type} variant={variant}>
       {loading ? <FontAwesomeIcon icon="spinner" size="lg" spin /> : children}
     </StyledButton>
   );

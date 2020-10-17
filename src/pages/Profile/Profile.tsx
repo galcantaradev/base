@@ -36,7 +36,7 @@ export const Profile = () => {
   const [{ data, fetching }] = useMeQuery();
 
   if (!data?.me && !fetching) {
-    return <Redirect to="login" />;
+    return <Redirect to="/login" />;
   }
 
   return (
