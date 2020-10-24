@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 
 import { Button, FormikInputField, SectionTitle } from '../../components';
 import { useForgotPasswordMutation } from '../../generated/graphql';
+import { useNotification } from '../../hooks';
 import { fieldErrorsToFormikErrors } from '../../utils';
 import { PasswordContainer } from './PasswordContainer';
 
@@ -16,6 +17,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ForgotPassword = () => {
+  const showNotification = useNotification();
   const [, forgotPassword] = useForgotPasswordMutation();
 
   const onSubmit = async (
@@ -32,7 +34,10 @@ export const ForgotPassword = () => {
       return;
     }
 
-    // TODO: show notification
+    showNotification({
+      type: 'success',
+      message: `an email has been sent to ${options.email}`
+    });
   };
 
   return (

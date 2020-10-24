@@ -12,6 +12,7 @@ export type ThemeColors = {
   disabledTextColor: string;
   warningColor: string;
   successColor: string;
+  infoColor: string;
 };
 
 export type Theme = {

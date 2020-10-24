@@ -1,4 +1,4 @@
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
@@ -14,6 +14,7 @@ import {
   useMeQuery,
   useProfileMutation
 } from '../../generated/graphql';
+import { useNotification } from '../../hooks';
 import { profileValidationSchema } from './profileValidationSchema';
 
 type ProfileForm = UserProfileInput & {
@@ -34,10 +35,25 @@ const Flex = styled.div`
 export const Profile = () => {
   const [, update] = useProfileMutation();
   const [{ data, fetching }] = useMeQuery();
+  const showNotification = useNotification();
 
   if (!data?.me && !fetching) {
     return <Redirect to="/login" />;
   }
+
+  const onSubmit = async (
+    options: ProfileForm,
+    actions: FormikHelpers<ProfileForm>
+  ) => {
+    await update({ options });
+
+    actions.resetForm();
+
+    showNotification({
+      type: 'success',
+      message: 'profile updated'
+    });
+  };
 
   return (
     <ProfileContainer>
@@ -48,8 +64,8 @@ export const Profile = () => {
           name: data?.me?.name || '',
           password: ''
         }}
+        onSubmit={onSubmit}
         validationSchema={() => profileValidationSchema}
-        onSubmit={async options => await update({ options })}
       >
         {formProps => {
           return (
@@ -81,6 +97,7 @@ export const Profile = () => {
                 width={400}
                 type="submit"
                 variant="success"
+                disabled={!formProps.dirty}
                 loading={formProps.isSubmitting}
               >
                 confirm

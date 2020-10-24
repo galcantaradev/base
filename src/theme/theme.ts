@@ -8,7 +8,8 @@ export const commonTheme = {
   boxShadowHoverColor: 'rgba(189, 192, 207, 0.5)',
   primary: '#151515',
   warningColor: '#ffc107',
-  successColor: '#63cf80'
+  successColor: '#63cf80',
+  infoColor: '#bbc'
 } as const;
 
 export const darkTheme: Theme = {

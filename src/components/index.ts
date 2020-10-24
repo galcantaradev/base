@@ -8,6 +8,7 @@ export * from './Grid';
 export * from './Input';
 export * from './Label';
 export * from './NavBar';
+export * from './Notification';
 export * from './SectionTitle';
 export * from './Switch';
 export * from './Table';

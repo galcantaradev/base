@@ -48,7 +48,8 @@ const StyledButton = styled.button<ButtonProps>`
 
   :focus,
   :hover {
-    background: ${props => lighten('.02', variants[props.variant!])};
+    background: ${props =>
+      !props.disabled ? lighten('.02', variants[props.variant!]) : ''};
     box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
     outline-color: ${props => variants[props.variant!]};
   }

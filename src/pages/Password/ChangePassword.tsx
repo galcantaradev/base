@@ -8,6 +8,7 @@ import {
   ChangePasswordInput,
   useChangePasswordMutation
 } from '../../generated/graphql';
+import { useNotification } from '../../hooks';
 import { fieldErrorsToFormikErrors } from '../../utils';
 import { PasswordContainer } from './PasswordContainer';
 
@@ -35,6 +36,7 @@ export const ChangePassword = ({
   }
 }: Props) => {
   const history = useHistory();
+  const showNotification = useNotification();
   const [, changePassword] = useChangePasswordMutation();
 
   const onSubmit = async (
@@ -48,12 +50,20 @@ export const ChangePassword = ({
       const formikErrors = fieldErrorsToFormikErrors(errors);
       actions.setErrors(formikErrors);
 
-      // TODO: check token error to show notification or info
+      if ('token' in formikErrors) {
+        showNotification({
+          type: 'error',
+          message: formikErrors.token
+        });
+      }
 
       return;
     }
 
-    // TODO: show notification
+    showNotification({
+      type: 'success',
+      message: 'password changed'
+    });
 
     history.push('/');
   };
