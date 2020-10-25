@@ -1,6 +1,5 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
-import { Redirect } from 'react-router';
 import styled from 'styled-components';
 
 import {
@@ -34,12 +33,8 @@ const Flex = styled.div`
 
 export const Profile = () => {
   const [, update] = useProfileMutation();
-  const [{ data, fetching }] = useMeQuery();
+  const [{ data }] = useMeQuery();
   const showNotification = useNotification();
-
-  if (!data?.me && !fetching) {
-    return <Redirect to="/login" />;
-  }
 
   const onSubmit = async (
     options: ProfileForm,

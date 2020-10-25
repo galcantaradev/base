@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 
+import { useMeQuery } from '../generated/graphql';
 import {
   ChangePassword,
   ForgotPassword,
@@ -9,20 +10,35 @@ import {
   NotFound,
   Profile,
   Register,
+  Unauthorized,
   YouAreLoggedIn
 } from '../pages';
+import { ProtectedRoute, RouteWithRedirect } from './';
 
 export const Routes = () => {
+  const history = useHistory();
+  const [{ data }] = useMeQuery();
+
   return (
     <Switch>
       <Route path="/" component={Home} exact />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+      <RouteWithRedirect
+        path="/login"
+        component={Login}
+        redirectTo="/logged-in"
+        condition={history.location.pathname === '/login' && !!data?.me}
+      />
+      <RouteWithRedirect
+        path="/register"
+        component={Register}
+        redirectTo="/logged-in"
+        condition={history.location.pathname === '/register' && !!data?.me}
+      />
+      <ProtectedRoute path="/profile" component={Profile} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/change-password/:token" component={ChangePassword} />
-      <Route path="/profile" component={Profile} />
       <Route path="/logged-in" component={YouAreLoggedIn} />
-      <Route path="/unauthorized" component={YouAreLoggedIn} />
+      <Route path="/unauthorized" component={Unauthorized} />
       <Route path="*" component={NotFound} />
     </Switch>
   );

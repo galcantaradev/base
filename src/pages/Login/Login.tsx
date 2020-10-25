@@ -1,7 +1,6 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import { History } from 'history';
 import React from 'react';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -11,11 +10,7 @@ import {
   FormikInputField,
   SectionTitle
 } from '../../components';
-import {
-  UserLoginInput,
-  useLoginMutation,
-  useMeQuery
-} from '../../generated/graphql';
+import { UserLoginInput, useLoginMutation } from '../../generated/graphql';
 import { fieldErrorsToFormikErrors } from '../../utils';
 import { loginValidationSchema } from './loginValidationSchema';
 
@@ -43,11 +38,6 @@ const LinkContainer = styled.div`
 
 export const Login = ({ history }: Props) => {
   const [, login] = useLoginMutation();
-  const [{ data }] = useMeQuery();
-
-  if (data?.me) {
-    return <Redirect to="/logged-in" />;
-  }
 
   const onSubmit = async (
     options: UserLoginInput,
