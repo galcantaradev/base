@@ -10,7 +10,10 @@ const StyledNav = styled.nav`
   background-color: ${props => props.theme.primary};
   color: #fff;
   padding: 10px;
+  position: sticky;
+  top: 0;
   width: 100%;
+  z-index: 2;
 
   a {
     color: #fff;

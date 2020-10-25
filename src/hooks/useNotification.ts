@@ -9,10 +9,12 @@ type UseNotificationReturn = (notification: NotificationValue) => void;
 export const useNotification = (): UseNotificationReturn => {
   const { addNotification } = useContext(NotificationContext);
 
-  const showNotification = (notification: NotificationValue): void => {
+  const showNotification = (
+    notification: Omit<NotificationValue, 'id'>
+  ): void => {
     addNotification({
       ...notification,
-      id: `${v4()}`
+      id: v4()
     });
   };
 

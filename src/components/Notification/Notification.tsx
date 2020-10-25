@@ -136,6 +136,8 @@ const variants: Record<NotificationType, string> = {
 
 export const Notification = ({ value, onDestroy }: NotificationProps) => {
   const timeout = useRef(0);
+  const mounted = useRef(false);
+  const [mouseIn, setMouseIn] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -153,23 +155,36 @@ export const Notification = ({ value, onDestroy }: NotificationProps) => {
 
       await reset();
 
-      onDestroy();
+      mounted.current = true;
     })();
 
     return () => {
       clearTimeout(timeout.current);
     };
-
-    // eslint-disable-next-line
   }, []);
 
-  return visible ? (
-    <StyledNotificationContainer variant={value.type}>
+  useEffect(() => {
+    if (mounted.current && mouseIn) {
+      onDestroy();
+    }
+  }, [mouseIn, onDestroy]);
+
+  const close = () => {
+    setMouseIn(false);
+    setVisible(false);
+  };
+
+  return visible || mouseIn ? (
+    <StyledNotificationContainer
+      variant={value.type}
+      onMouseEnter={() => setMouseIn(true)}
+      onMouseLeave={() => setMouseIn(false)}
+    >
       <StyledNotificationIcon variant={value.type}>
         {icons[value.type]}
       </StyledNotificationIcon>
       <StyledNotificationText>{value.message}</StyledNotificationText>
-      <StyledNotificationCloseButton onClick={() => setVisible(false)}>
+      <StyledNotificationCloseButton onClick={close}>
         <FontAwesomeIcon icon="times" />
       </StyledNotificationCloseButton>
     </StyledNotificationContainer>
