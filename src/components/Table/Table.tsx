@@ -1,4 +1,6 @@
+import { darken, lighten } from 'polished';
 import React, { Children, ReactElement, ReactNode, useMemo } from 'react';
+import styled from 'styled-components';
 
 import { Column, ColumnProps } from './Column';
 
@@ -10,23 +12,67 @@ type Data<T> = {
   data: (value: T, index: number) => ReactNode;
 };
 
-type TableClasses = {
-  className?: string;
-  bodyClasses?: string;
-  headerClasses?: string;
-};
-
 export type TableProps<T> = {
   values: T[];
   emptyMessage?: string;
   children: ReactElement<ColumnProps<T>>[];
   keyExtractor: (value: T, index: number) => string;
-} & TableClasses;
+};
+
+const StyledTable = styled.table`
+  box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
+  border-collapse: separate;
+  color: ${props => props.theme.textColor};
+  text-align: left;
+  border-width: 1px;
+  border-style: solid;
+  min-width: 95%;
+  border-color: ${props => lighten('.1', props.theme.primary)};
+  border-radius: 6px;
+
+  thead {
+    th {
+      border-bottom-color: ${props => lighten('.1', props.theme.primary)};
+      border-bottom-width: 2px;
+      border-style: solid;
+      color: ${props => props.theme.textColor};
+      padding: 10px;
+    }
+  }
+
+  tbody {
+    tr {
+      :nth-child(even) {
+        background-color: ${props => {
+          return props.theme.themeId === 'light_theme'
+            ? darken('.1', props.theme.backgroundColor)
+            : props.theme.primary;
+        }};
+      }
+
+      :last-child {
+        td {
+          :first-child {
+            border-bottom-left-radius: 6px;
+          }
+
+          :last-child {
+            border-bottom-right-radius: 6px;
+          }
+        }
+      }
+    }
+
+    td {
+      padding: 10px;
+    }
+`;
+
+const StyledEmptyMessage = styled.tr`
+  text-align: center;
+`;
 
 export const Table = <T extends any>({
-  className = '',
-  bodyClasses = '',
-  headerClasses = '',
   values = [],
   children,
   keyExtractor,
@@ -47,8 +93,8 @@ export const Table = <T extends any>({
   }, [children]);
 
   return (
-    <table className={className}>
-      <thead className={headerClasses}>
+    <StyledTable>
+      <thead>
         <tr>
           {ths.map((th: Header, index: number) => {
             const thKey = `${th.header}_${index}`;
@@ -62,7 +108,7 @@ export const Table = <T extends any>({
         </tr>
       </thead>
 
-      <tbody className={bodyClasses}>
+      <tbody>
         {values.length > 0 ? (
           values.map((value: T, index: number) => {
             const extractedKey = keyExtractor(value, index);
@@ -82,14 +128,14 @@ export const Table = <T extends any>({
             );
           })
         ) : (
-          <tr>
+          <StyledEmptyMessage>
             <td colSpan={12} data-testid="empty-message">
               {emptyMessage}
             </td>
-          </tr>
+          </StyledEmptyMessage>
         )}
       </tbody>
-    </table>
+    </StyledTable>
   );
 };
 
