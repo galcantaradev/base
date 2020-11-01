@@ -20,23 +20,25 @@ export type TableProps<T> = {
 };
 
 const StyledTable = styled.table`
-  box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
   border-collapse: separate;
-  color: ${props => props.theme.textColor};
-  text-align: left;
-  border-width: 1px;
-  border-style: solid;
-  min-width: 95%;
   border-color: ${props => lighten('.1', props.theme.primary)};
   border-radius: 6px;
+  box-shadow: 0 2px 8px 0 ${props => props.theme.shadowColor};
+  border-style: solid;
+  border-width: 1px;
+  color: ${props => props.theme.textColor};
+  min-width: 95%;
+  text-align: left;
 
   thead {
-    th {
-      border-bottom-color: ${props => lighten('.1', props.theme.primary)};
-      border-bottom-width: 2px;
-      border-style: solid;
-      color: ${props => props.theme.textColor};
-      padding: 10px;
+    tr {
+      th {
+        border-bottom-color: ${props => lighten('.1', props.theme.primary)};
+        border-bottom-width: 2px;
+        border-style: solid;
+        color: ${props => props.theme.textColor};
+        padding: 10px;
+      }
     }
   }
 
@@ -45,9 +47,18 @@ const StyledTable = styled.table`
       :nth-child(even) {
         background-color: ${props => {
           return props.theme.themeId === 'light_theme'
-            ? darken('.1', props.theme.backgroundColor)
+            ? darken('.05', props.theme.backgroundColor)
             : props.theme.primary;
         }};
+      }
+
+      :hover {
+        background-color: ${props => {
+          return props.theme.themeId === 'light_theme'
+            ? darken('.1', props.theme.backgroundColor)
+            : lighten('.05', props.theme.primary);
+        }};
+        transition: all 0.2s linear;
       }
 
       :last-child {
@@ -62,10 +73,11 @@ const StyledTable = styled.table`
         }
       }
     }
+  }
 
-    td {
-      padding: 10px;
-    }
+  td {
+    padding: 10px;
+  }
 `;
 
 const StyledEmptyMessage = styled.tr`
