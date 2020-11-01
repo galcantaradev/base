@@ -44,6 +44,53 @@ const StyledTable = styled.table`
 
   tbody {
     tr {
+      div {
+        float: right;
+
+        button {
+          background-color: ${props => props.theme.backgroundColor};
+          border: none;
+          border-radius: 50%;
+          cursor: pointer;
+          margin-right: 10px;
+          padding: 5px;
+
+          svg {
+            color: ${props => props.theme.textColor};
+          }
+
+          :focus {
+            box-shadow: 0 0 0 1px ${props => props.theme.textColor};
+            outline: none;
+          }
+
+          :last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      td {
+        padding: 8px;
+        vertical-align: middle;
+
+        :last-child {
+          width: 10%;
+        }
+      }
+
+      :last-child {
+        td {
+          :first-child {
+            border-bottom-left-radius: 6px;
+          }
+
+          :last-child {
+            border-bottom-right-radius: 6px;
+          }
+        }
+      }
+
       :nth-child(even) {
         background-color: ${props => {
           return props.theme.themeId === 'light_theme'
@@ -60,23 +107,7 @@ const StyledTable = styled.table`
         }};
         transition: all 0.2s linear;
       }
-
-      :last-child {
-        td {
-          :first-child {
-            border-bottom-left-radius: 6px;
-          }
-
-          :last-child {
-            border-bottom-right-radius: 6px;
-          }
-        }
-      }
     }
-  }
-
-  td {
-    padding: 10px;
   }
 `;
 

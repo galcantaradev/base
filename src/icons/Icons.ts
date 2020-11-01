@@ -5,5 +5,8 @@ export {
   faCheck,
   faTimes,
   faExclamation,
-  faInfo
+  faInfo,
+  faPencilAlt,
+  faTrashAlt,
+  faEye
 } from '@fortawesome/free-solid-svg-icons';
