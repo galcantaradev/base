@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Column, ColumnProps } from './Column';
 
 type Header = {
-  header?: string;
+  header?: ReactNode;
 };
 
 type Data<T> = {
@@ -30,6 +30,44 @@ const StyledTable = styled.table`
   min-width: 95%;
   text-align: left;
 
+  thead,
+  tbody {
+    tr {
+      line-height: 25px;
+
+      th,
+      td {
+        vertical-align: middle;
+      }
+    }
+
+    div {
+      float: right;
+
+      button {
+        background-color: ${props => props.theme.backgroundColor};
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        margin-right: 10px;
+        padding: 5px;
+
+        svg {
+          color: ${props => props.theme.textColor};
+        }
+
+        :focus {
+          box-shadow: 0 0 0 1px ${props => props.theme.textColor};
+          outline: none;
+        }
+
+        :last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
   thead {
     tr {
       th {
@@ -44,38 +82,11 @@ const StyledTable = styled.table`
 
   tbody {
     tr {
-      div {
-        float: right;
-
-        button {
-          background-color: ${props => props.theme.backgroundColor};
-          border: none;
-          border-radius: 50%;
-          cursor: pointer;
-          margin-right: 10px;
-          padding: 5px;
-
-          svg {
-            color: ${props => props.theme.textColor};
-          }
-
-          :focus {
-            box-shadow: 0 0 0 1px ${props => props.theme.textColor};
-            outline: none;
-          }
-
-          :last-child {
-            margin-right: 0;
-          }
-        }
-      }
-
       td {
         padding: 8px;
-        vertical-align: middle;
 
         :last-child {
-          width: 10%;
+          width: 120px;
         }
       }
 

@@ -8,5 +8,6 @@ export {
   faInfo,
   faPencilAlt,
   faTrashAlt,
-  faEye
+  faEye,
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';

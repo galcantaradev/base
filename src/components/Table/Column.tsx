@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export type ColumnProps<T> = {
-  header?: string;
+  header?: ReactNode;
   data: (value: T) => ReactNode;
 };
 
