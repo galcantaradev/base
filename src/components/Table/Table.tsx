@@ -40,32 +40,6 @@ const StyledTable = styled.table`
         vertical-align: middle;
       }
     }
-
-    div {
-      float: right;
-
-      button {
-        background-color: ${props => props.theme.backgroundColor};
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        margin-right: 10px;
-        padding: 5px;
-
-        svg {
-          color: ${props => props.theme.textColor};
-        }
-
-        :focus {
-          box-shadow: 0 0 0 1px ${props => props.theme.textColor};
-          outline: none;
-        }
-
-        :last-child {
-          margin-right: 0;
-        }
-      }
-    }
   }
 
   thead {
@@ -75,15 +49,25 @@ const StyledTable = styled.table`
         border-bottom-width: 2px;
         border-style: solid;
         color: ${props => props.theme.textColor};
-        padding: 10px;
+        padding: 8px;
       }
     }
   }
 
   tbody {
     tr {
+      div {
+        visibility: hidden;
+      }
+
+      :hover {
+        div {
+          visibility: visible;
+        }
+      }
+
       td {
-        padding: 8px;
+        padding: 8px 0 8px 8px;
 
         :last-child {
           width: 120px;
