@@ -1,2 +1,1 @@
-export * from './BaseReducer';
-export * from './User';
+export * from './Sortable';

@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
   border-bottom-left-radius: 16px;
   border-top-left-radius: 16px;
   float: right;
-  padding-right: 2px;
+  padding: 3px 6px 3px 12px;
 `;
 
 export const ActionsGroup = ({ children }: ActionsGroupProps) => {

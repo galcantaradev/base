@@ -1,10 +1,20 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
-import React, { Children, ReactElement, ReactNode, useMemo } from 'react';
+import React, {
+  Children,
+  ReactElement,
+  ReactNode,
+  useMemo,
+  useState
+} from 'react';
 import styled from 'styled-components';
 
+import { Direction, Sort } from '../../types';
 import { Column, ColumnProps } from './Column';
+import { getNextDirection, icons, initialSort } from './TableUtils';
 
 type Header = {
+  name?: string;
   header?: ReactNode;
 };
 
@@ -16,6 +26,8 @@ export type TableProps<T> = {
   values: T[];
   emptyMessage?: string;
   children: ReactElement<ColumnProps<T>>[];
+  defaultSort?: Sort;
+  onSort?: (name: string, direction: Direction) => void;
   keyExtractor: (value: T, index: number) => string;
 };
 
@@ -50,6 +62,11 @@ const StyledTable = styled.table`
         border-style: solid;
         color: ${props => props.theme.textColor};
         padding: 8px;
+
+        svg {
+          cursor: pointer;
+          height: 12px;
+        }
       }
     }
   }
@@ -114,21 +131,37 @@ export const Table = <T extends any>({
   values = [],
   children,
   keyExtractor,
-  emptyMessage = 'Table is empty'
+  emptyMessage = 'Table is empty',
+  defaultSort = initialSort,
+  onSort
 }: TableProps<T>) => {
+  const [sort, setSort] = useState(defaultSort);
   const [ths, tds] = useMemo(() => {
     const ths: Header[] = [];
     const tds: Data<T>[] = [];
 
     Children.forEach(children, child => {
-      const { data, header } = child.props;
+      const { data, header, name } = child.props;
 
       tds.push({ data });
-      ths.push({ header });
+      ths.push({ header, name });
     });
 
     return [ths, tds];
   }, [children]);
+
+  const handleSort = (name: string): void => {
+    setSort(prevSort => {
+      const direction = getNextDirection(prevSort, name);
+
+      onSort?.(name, direction);
+
+      return {
+        name,
+        direction
+      };
+    });
+  };
 
   return (
     <StyledTable>
@@ -136,10 +169,17 @@ export const Table = <T extends any>({
         <tr>
           {ths.map((th: Header, index: number) => {
             const thKey = `${th.header}_${index}`;
+            const direction = th.name === sort.name ? sort.direction : 'sort';
 
             return (
               <th key={thKey} data-testid={thKey}>
-                {th.header}
+                {th.header}{' '}
+                {th.name && (
+                  <FontAwesomeIcon
+                    icon={icons[direction]}
+                    onClick={() => handleSort(th.name!)}
+                  />
+                )}
               </th>
             );
           })}

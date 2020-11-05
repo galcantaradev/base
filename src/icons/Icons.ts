@@ -9,5 +9,8 @@ export {
   faPencilAlt,
   faTrashAlt,
   faEye,
-  faPlus
+  faPlus,
+  faSort,
+  faSortUp,
+  faSortDown
 } from '@fortawesome/free-solid-svg-icons';
