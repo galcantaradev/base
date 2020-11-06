@@ -173,13 +173,13 @@ export const Table = <T extends any>({
 
             return (
               <th key={thKey} data-testid={thKey}>
-                {th.header}{' '}
                 {th.name && (
                   <FontAwesomeIcon
                     icon={icons[direction]}
                     onClick={() => handleSort(th.name!)}
                   />
-                )}
+                )}{' '}
+                {th.header}
               </th>
             );
           })}

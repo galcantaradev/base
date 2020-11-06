@@ -16,7 +16,7 @@ export const icons: Record<string, IconProp> = {
 export const nextDirection: Record<Direction, Direction> = {
   sort: 'asc',
   asc: 'desc',
-  desc: 'sort'
+  desc: 'asc'
 };
 
 export const getNextDirection = (
