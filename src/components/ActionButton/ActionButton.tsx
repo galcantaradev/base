@@ -24,7 +24,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 8px;
   padding: 5px;
 
   svg {

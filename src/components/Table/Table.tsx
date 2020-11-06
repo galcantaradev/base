@@ -84,7 +84,7 @@ const StyledTable = styled.table`
       }
 
       td {
-        padding: 8px 0 8px 8px;
+        padding: 4px 0 4px 8px;
 
         :last-child {
           width: 120px;
@@ -94,11 +94,11 @@ const StyledTable = styled.table`
       :last-child {
         td {
           :first-child {
-            border-bottom-left-radius: 6px;
+            border-bottom-left-radius: 8px;
           }
 
           :last-child {
-            border-bottom-right-radius: 6px;
+            border-bottom-right-radius: 8px;
           }
         }
       }
