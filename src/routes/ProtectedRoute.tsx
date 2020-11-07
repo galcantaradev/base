@@ -11,9 +11,13 @@ export const ProtectedRoute = ({
   component: Component,
   ...rest
 }: ProtectedRouteProps) => {
-  const [{ data }] = useMeQuery();
+  const [{ fetching, data }] = useMeQuery();
 
   const isAuthenticated = useMemo(() => !!data?.me, [data]);
+
+  if (fetching) {
+    return null;
+  }
 
   return (
     <Route

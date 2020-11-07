@@ -80,6 +80,7 @@ export const cache = cacheExchange({
 });
 
 export const urqlClient = createClient({
+  suspense: false,
   fetchOptions: {
     credentials: 'include'
   },
