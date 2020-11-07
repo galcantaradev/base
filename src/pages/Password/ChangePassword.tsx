@@ -1,6 +1,6 @@
 import { Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import * as Yup from 'yup';
 
 import { Button, FormikInputField, SectionTitle } from '../../components';
@@ -12,12 +12,8 @@ import { useNotification } from '../../hooks';
 import { fieldErrorsToFormikErrors } from '../../utils';
 import { PasswordContainer } from './PasswordContainer';
 
-type Props = {
-  match: {
-    params: {
-      token: string;
-    };
-  };
+type Params = {
+  token: string;
 };
 
 const validationSchema = Yup.object().shape({
@@ -30,12 +26,9 @@ const validationSchema = Yup.object().shape({
   )
 });
 
-export const ChangePassword = ({
-  match: {
-    params: { token }
-  }
-}: Props) => {
+export const ChangePassword = () => {
   const history = useHistory();
+  const { token } = useParams<Params>();
   const showNotification = useNotification();
   const [, changePassword] = useChangePasswordMutation();
 

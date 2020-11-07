@@ -1,6 +1,6 @@
 {
   "name": "base-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -15,9 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "@urql/exchange-graphcache": "^3.1.4",
-    "axios": "^0.19.2",
     "classnames": "^2.2.6",
-    "date-fns": "^2.16.1",
     "formik": "^2.1.5",
     "graphql": "^15.3.0",
     "polished": "^4.0.1",
@@ -42,7 +40,6 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.5",
-    "@types/axios": "^0.14.0",
     "@types/classnames": "^2.2.10",
     "@types/jest": "^24.0.0",
     "@types/node": "^14.10.2",
@@ -61,11 +58,8 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "husky": "^4.2.5",
-    "import-sort": "^6.0.0",
-    "import-sort-style-module": "^6.0.0",
     "lint-staged": "^10.4.0",
-    "prettier": "^2.0.5",
-    "prettier-plugin-import-sort": "^0.0.4"
+    "prettier": "^2.0.5"
   },
   "proxy": "http://localhost:4000",
   "eslintConfig": {
@@ -82,12 +76,6 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "importSort": {
-    ".js, .jsx, .ts, .tsx": {
-      "parser": "typescript",
-      "style": "module"
-    }
   },
   "browserslist": {
     "production": [
