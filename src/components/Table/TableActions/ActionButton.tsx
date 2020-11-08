@@ -1,11 +1,12 @@
+import * as React from 'react';
+import { MouseEvent } from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { MouseEvent } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { fontSizeState } from '../../state';
-import { ButtonProps } from '../Button';
+import { fontSizeState } from '../../../state';
+import { ButtonProps } from '../../Button';
 
 export type ActionButtonProps = {
   children: string;
@@ -15,11 +16,11 @@ export type ActionButtonProps = {
   ) => void;
 };
 
-type StyledButtonProps = ButtonProps & {
+type StyledActionButtonProps = ButtonProps & {
   fontSize: number;
 };
 
-const StyledButton = styled.button<StyledButtonProps>`
+const StyledActionButton = styled.button<StyledActionButtonProps>`
   background-color: ${props => props.theme.backgroundColor};
   border: none;
   border-radius: 50%;
@@ -73,9 +74,9 @@ export const ActionButton = ({
   const fontSize = useRecoilValue(fontSizeState);
 
   return (
-    <StyledButton fontSize={fontSize} onClick={onClick} tabIndex={-1}>
+    <StyledActionButton fontSize={fontSize} onClick={onClick} tabIndex={-1}>
       <p>{children}</p>
       <FontAwesomeIcon icon={icon} />
-    </StyledButton>
+    </StyledActionButton>
   );
 };

@@ -1,8 +1,9 @@
 import './assets/style/style.css';
 import './icons/IconsLibrary';
 
-import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import { StrictMode } from 'react';
+import * as ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil';
 
 import App from './App';

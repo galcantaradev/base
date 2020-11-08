@@ -1,12 +1,7 @@
+import * as React from 'react';
+import { Children, ReactElement, ReactNode, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
-import React, {
-  Children,
-  ReactElement,
-  ReactNode,
-  useMemo,
-  useState
-} from 'react';
 import styled from 'styled-components';
 
 import { Direction, Sort } from '../../types';

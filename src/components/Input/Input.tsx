@@ -1,5 +1,6 @@
+import * as React from 'react';
+import { InputHTMLAttributes } from 'react';
 import { lighten } from 'polished';
-import React, { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 import { ErrorMessage, FormGroup, Label } from '../';

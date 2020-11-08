@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { themeState, toggleThemeState } from '../state';
 import { Theme } from '../theme';
 
-export type UseThemeReturn = {
+type UseThemeReturn = {
   theme: Theme;
   toggleTheme: () => void;
 };

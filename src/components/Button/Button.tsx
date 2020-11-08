@@ -1,10 +1,7 @@
+import * as React from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { lighten } from 'polished';
-import React, {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  MouseEvent
-} from 'react';
 import styled from 'styled-components';
 
 import { commonTheme } from '../../theme';

@@ -1,4 +1,5 @@
-import React, { ComponentType } from 'react';
+import * as React from 'react';
+import { ComponentType } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router';
 
 export type RouteWithRedirectProps = RouteProps & {

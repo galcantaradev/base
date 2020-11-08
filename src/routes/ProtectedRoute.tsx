@@ -1,4 +1,5 @@
-import React, { ComponentType, useMemo } from 'react';
+import * as React from 'react';
+import { ComponentType, useMemo } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router';
 
 import { useMeQuery } from '../generated/graphql';

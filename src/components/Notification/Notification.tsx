@@ -1,12 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { darken, lighten } from 'polished';
-import React, {
+import * as React from 'react';
+import {
   DetailedHTMLProps,
   HTMLAttributes,
   useEffect,
   useRef,
   useState
 } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { darken, lighten } from 'polished';
 import styled from 'styled-components';
 
 import { commonTheme } from '../../theme';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { renderWithIntl } from '../../../utils';
 import { FormattedCurrency } from '../FormattedCurrency';

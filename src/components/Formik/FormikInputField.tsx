@@ -1,5 +1,6 @@
+import * as React from 'react';
+import { useMemo } from 'react';
 import { useField } from 'formik';
-import React, { useMemo } from 'react';
 
 import { Input, InputProps } from '../';
 

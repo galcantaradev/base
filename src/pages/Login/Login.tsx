@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { History } from 'history';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -12,7 +12,6 @@ import {
 } from '../../components';
 import { UserLoginInput, useLoginMutation } from '../../generated/graphql';
 import { fieldErrorsToFormikErrors } from '../../utils';
-import { loginValidationSchema } from './loginValidationSchema';
 
 type Props = {
   history: History;
@@ -61,7 +60,6 @@ export const Login = ({ history }: Props) => {
       <Formik<UserLoginInput>
         onSubmit={onSubmit}
         initialValues={{ email: '', password: '' }}
-        validationSchema={() => loginValidationSchema}
       >
         {formProps => {
           return (

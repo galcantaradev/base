@@ -1,4 +1,5 @@
-import React, { ReactNode, createContext, useState } from 'react';
+import * as React from 'react';
+import { ReactNode, createContext, useState } from 'react';
 
 import {
   Notification,

@@ -1,5 +1,6 @@
+import * as React from 'react';
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export type ThemeSwitcherProps = InputHTMLAttributes<HTMLInputElement> & {

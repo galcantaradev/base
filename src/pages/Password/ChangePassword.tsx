@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
-import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import * as Yup from 'yup';
 
@@ -65,7 +65,7 @@ export const ChangePassword = () => {
     <PasswordContainer>
       <Formik<ChangePasswordInput>
         onSubmit={onSubmit}
-        validationSchema={() => validationSchema}
+        validationSchema={validationSchema}
         initialValues={{ password: '', passwordConfirmation: '' }}
       >
         {formProps => {

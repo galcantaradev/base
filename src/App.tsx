@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { createBrowserHistory } from 'history';
-import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { Router } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

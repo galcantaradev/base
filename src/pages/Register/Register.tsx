@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { History } from 'history';
-import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -14,7 +14,7 @@ import {
   useRegisterMutation
 } from '../../generated/graphql';
 import { fieldErrorsToFormikErrors } from '../../utils';
-import { registerValidationSchema } from './registerValidationSchema';
+import { validationSchema } from './validationSchema';
 
 type Props = {
   history: History;
@@ -61,7 +61,7 @@ export const Register = ({ history }: Props) => {
           password: '',
           passwordConfirmation: ''
         }}
-        validationSchema={() => registerValidationSchema}
+        validationSchema={validationSchema}
       >
         {formProps => {
           return (

@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
-import React from 'react';
 import * as Yup from 'yup';
 
 import { Button, FormikInputField, SectionTitle } from '../../components';
@@ -45,7 +45,7 @@ export const ForgotPassword = () => {
       <Formik<ForgotPasswordInput>
         onSubmit={onSubmit}
         initialValues={{ email: '' }}
-        validationSchema={() => validationSchema}
+        validationSchema={validationSchema}
       >
         {formProps => {
           return (

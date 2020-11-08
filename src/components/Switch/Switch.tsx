@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from 'react';
+import * as React from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export type SwitchProps = InputHTMLAttributes<HTMLInputElement> & {

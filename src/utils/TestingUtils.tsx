@@ -1,5 +1,6 @@
+import * as React from 'react';
+import { ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import React, { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
 
 import { defaultLocale } from './LocaleUtils';

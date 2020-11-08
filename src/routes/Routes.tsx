@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Route, Switch, useHistory } from 'react-router';
 
 import { useMeQuery } from '../generated/graphql';

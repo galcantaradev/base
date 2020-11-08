@@ -1,8 +1,5 @@
-import React, {
-  DetailedHTMLProps,
-  LabelHTMLAttributes,
-  ReactNode
-} from 'react';
+import * as React from 'react';
+import { DetailedHTMLProps, LabelHTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 
 export type LabelProps = DetailedHTMLProps<

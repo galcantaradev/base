@@ -1,6 +1,5 @@
+import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
-import React from 'react';
-import styled from 'styled-components';
 
 import {
   Button,
@@ -14,7 +13,8 @@ import {
   useProfileMutation
 } from '../../generated/graphql';
 import { useNotification } from '../../hooks';
-import { profileValidationSchema } from './profileValidationSchema';
+import { validationSchema } from './validationSchema';
+import styled from 'styled-components';
 
 type ProfileForm = UserProfileInput & {
   email?: string;
@@ -60,7 +60,7 @@ export const Profile = () => {
           password: ''
         }}
         onSubmit={onSubmit}
-        validationSchema={() => profileValidationSchema}
+        validationSchema={validationSchema}
       >
         {formProps => {
           return (

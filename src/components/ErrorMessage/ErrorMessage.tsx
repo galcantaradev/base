@@ -1,4 +1,5 @@
-import React, { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import * as React from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 
 export type ErrorMessageProps = DetailedHTMLProps<

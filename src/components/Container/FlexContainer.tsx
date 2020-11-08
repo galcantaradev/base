@@ -1,5 +1,6 @@
+import * as React from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { lighten } from 'polished';
-import React, { HTMLAttributes, ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
