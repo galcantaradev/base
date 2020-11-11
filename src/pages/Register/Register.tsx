@@ -31,7 +31,7 @@ const Flex = styled.div`
   justify-content: space-between;
 `;
 
-export const Register = ({ history }: Props) => {
+const Register = ({ history }: Props) => {
   const [, register] = useRegisterMutation();
 
   const onSubmit = async (
@@ -109,3 +109,5 @@ export const Register = ({ history }: Props) => {
     </RegisterContainer>
   );
 };
+
+export default Register;

@@ -7,10 +7,12 @@ const HomeContainer = styled(FlexContainer)`
   align-items: center;
 `;
 
-export const Home = () => {
+const Home = () => {
   return (
     <HomeContainer>
       <SectionTitle style={{ marginTop: 10 }}>home</SectionTitle>
     </HomeContainer>
   );
 };
+
+export default Home;

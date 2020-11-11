@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
   )
 });
 
-export const ChangePassword = () => {
+const ChangePassword = () => {
   const history = useHistory();
   const { token } = useParams<Params>();
   const showNotification = useNotification();
@@ -101,3 +101,5 @@ export const ChangePassword = () => {
     </PasswordContainer>
   );
 };
+
+export default ChangePassword;

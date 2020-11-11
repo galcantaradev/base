@@ -31,7 +31,7 @@ const Flex = styled.div`
   justify-content: space-between;
 `;
 
-export const Profile = () => {
+const Profile = () => {
   const [, update] = useProfileMutation();
   const [{ data }] = useMeQuery();
   const showNotification = useNotification();
@@ -104,3 +104,5 @@ export const Profile = () => {
     </ProfileContainer>
   );
 };
+
+export default Profile;

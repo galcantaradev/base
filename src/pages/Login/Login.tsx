@@ -35,7 +35,7 @@ const LinkContainer = styled.div`
   }
 `;
 
-export const Login = ({ history }: Props) => {
+const Login = ({ history }: Props) => {
   const [, login] = useLoginMutation();
 
   const onSubmit = async (
@@ -96,3 +96,5 @@ export const Login = ({ history }: Props) => {
     </LoginContainer>
   );
 };
+
+export default Login;

@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { ErrorPageContainer } from './ErrorPageContainer';
 
-export const Unauthorized = () => {
+const Unauthorized = () => {
   return <ErrorPageContainer>Unauthorized</ErrorPageContainer>;
 };
+
+export default Unauthorized;

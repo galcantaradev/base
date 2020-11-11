@@ -6,8 +6,8 @@ import { useRecoilValue } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'urql';
 
-import { NavBar } from './components';
 import { ErrorBoundary } from './pages';
+import { NavBar } from './components';
 import { NotificationProvider } from './providers';
 import { Routes } from './routes';
 import { themeState } from './state/atoms';

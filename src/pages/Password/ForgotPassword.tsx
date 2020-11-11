@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email('email is invalid').required('email is required')
 });
 
-export const ForgotPassword = () => {
+const ForgotPassword = () => {
   const showNotification = useNotification();
   const [, forgotPassword] = useForgotPasswordMutation();
 
@@ -71,3 +71,5 @@ export const ForgotPassword = () => {
     </PasswordContainer>
   );
 };
+
+export default ForgotPassword;
