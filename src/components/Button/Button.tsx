@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { lighten } from 'polished';
 import styled from 'styled-components';
 
 import { commonTheme } from '../../theme';
+import { Spinner } from '../Spinner';
 
 export type ButtonVariant = keyof typeof variants;
 
@@ -72,7 +72,7 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <StyledButton {...rest} onClick={handleClick} type={type} variant={variant}>
-      {loading ? <FontAwesomeIcon icon="spinner" size="lg" spin /> : children}
+      {loading ? <Spinner /> : children}
     </StyledButton>
   );
 };

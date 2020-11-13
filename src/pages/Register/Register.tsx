@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import {
   Button,
-  FlexContainer,
+  CentralizedContainer,
   FormikInputField,
   SectionTitle
 } from '../../components';
@@ -19,11 +19,6 @@ import { validationSchema } from './validationSchema';
 type Props = {
   history: History;
 };
-
-const RegisterContainer = styled(FlexContainer)`
-  align-items: center;
-  justify-content: center;
-`;
 
 const Flex = styled.div`
   display: flex;
@@ -52,7 +47,7 @@ const Register = ({ history }: Props) => {
   };
 
   return (
-    <RegisterContainer>
+    <CentralizedContainer>
       <Formik<UserRegisterInput>
         onSubmit={onSubmit}
         initialValues={{
@@ -106,7 +101,7 @@ const Register = ({ history }: Props) => {
           );
         }}
       </Formik>
-    </RegisterContainer>
+    </CentralizedContainer>
   );
 };
 

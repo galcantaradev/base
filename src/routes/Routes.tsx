@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { lazy, Suspense, useMemo } from 'react';
 import { Route, Switch, useHistory } from 'react-router';
+import { CentralizedContainer, Spinner } from '../components';
 
 import { useMeQuery } from '../generated/graphql';
-import { LoadingRoutes, ProtectedRoute, RouteWithRedirect } from './';
+import { ProtectedRoute, RouteWithRedirect } from './';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Login = lazy(() => import('../pages/Login/Login'));
@@ -14,6 +15,12 @@ const Register = lazy(() => import('../pages/Register/Register'));
 const NotFound = lazy(() => import('../pages/Error/NotFound'));
 const Unauthorized = lazy(() => import('../pages/Error/Unauthorized'));
 
+const Loading = () => (
+  <CentralizedContainer>
+    <Spinner />
+  </CentralizedContainer>
+);
+
 export const Routes = () => {
   const history = useHistory();
   const [{ data }] = useMeQuery();
@@ -21,7 +28,7 @@ export const Routes = () => {
   const logged = useMemo(() => !!data?.me, [data]);
 
   return (
-    <Suspense fallback={<LoadingRoutes />}>
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/" component={Home} exact />
         <RouteWithRedirect

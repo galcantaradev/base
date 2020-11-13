@@ -2,11 +2,15 @@ import * as React from 'react';
 import { Form, Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
-import { Button, FormikInputField, SectionTitle } from '../../components';
+import {
+  Button,
+  CentralizedContainer,
+  FormikInputField,
+  SectionTitle
+} from '../../components';
 import { useForgotPasswordMutation } from '../../generated/graphql';
 import { useNotification } from '../../hooks';
 import { fieldErrorsToFormikErrors } from '../../utils';
-import { PasswordContainer } from './PasswordContainer';
 
 type ForgotPasswordInput = {
   email: string;
@@ -41,7 +45,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <PasswordContainer>
+    <CentralizedContainer>
       <Formik<ForgotPasswordInput>
         onSubmit={onSubmit}
         initialValues={{ email: '' }}
@@ -68,7 +72,7 @@ const ForgotPassword = () => {
           );
         }}
       </Formik>
-    </PasswordContainer>
+    </CentralizedContainer>
   );
 };
 

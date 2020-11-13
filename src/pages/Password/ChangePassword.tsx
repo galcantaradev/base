@@ -3,14 +3,18 @@ import { Form, Formik, FormikHelpers } from 'formik';
 import { useHistory, useParams } from 'react-router';
 import * as Yup from 'yup';
 
-import { Button, FormikInputField, SectionTitle } from '../../components';
+import {
+  Button,
+  CentralizedContainer,
+  FormikInputField,
+  SectionTitle
+} from '../../components';
 import {
   ChangePasswordInput,
   useChangePasswordMutation
 } from '../../generated/graphql';
 import { useNotification } from '../../hooks';
 import { fieldErrorsToFormikErrors } from '../../utils';
-import { PasswordContainer } from './PasswordContainer';
 
 type Params = {
   token: string;
@@ -62,7 +66,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <PasswordContainer>
+    <CentralizedContainer>
       <Formik<ChangePasswordInput>
         onSubmit={onSubmit}
         validationSchema={validationSchema}
@@ -98,7 +102,7 @@ const ChangePassword = () => {
           );
         }}
       </Formik>
-    </PasswordContainer>
+    </CentralizedContainer>
   );
 };
 

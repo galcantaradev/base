@@ -3,7 +3,7 @@ import { Form, Formik, FormikHelpers } from 'formik';
 
 import {
   Button,
-  FlexContainer,
+  CentralizedContainer,
   FormikInputField,
   SectionTitle
 } from '../../components';
@@ -19,11 +19,6 @@ import styled from 'styled-components';
 type ProfileForm = UserProfileInput & {
   email?: string;
 };
-
-const ProfileContainer = styled(FlexContainer)`
-  align-items: center;
-  justify-content: center;
-`;
 
 const Flex = styled.div`
   display: flex;
@@ -51,7 +46,7 @@ const Profile = () => {
   };
 
   return (
-    <ProfileContainer>
+    <CentralizedContainer>
       <Formik<ProfileForm>
         enableReinitialize
         initialValues={{
@@ -101,7 +96,7 @@ const Profile = () => {
           );
         }}
       </Formik>
-    </ProfileContainer>
+    </CentralizedContainer>
   );
 };
 

@@ -9,5 +9,6 @@ export * from './Label';
 export * from './NavBar';
 export * from './Notification';
 export * from './SectionTitle';
+export * from './Spinner';
 export * from './Switch';
 export * from './Table';

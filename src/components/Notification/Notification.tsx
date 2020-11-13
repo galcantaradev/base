@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { darken, lighten } from 'polished';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { commonTheme } from '../../theme';
 
@@ -50,10 +50,34 @@ export const StyledNotificationsContainer = styled.div`
   z-index: 1000;
 `;
 
+const fadeIn = keyframes`
+  from {
+    right: 0;
+    opacity: 0;
+  }
+
+  to {
+    right: 10px;
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    right: 10px;
+    opacity: 1;
+  }
+
+  to {
+    right: 0;
+    opacity: 0;
+  }
+`;
+
 const StyledNotificationContainer = styled.div<
   StyledNotificationContainerProps
 >`
-  animation: fadein 0.3s, fadeout 0.3s ${NOTIFICATION_TIME - 1}.5s;
+  animation: ${fadeIn} 0.3s, ${fadeOut} 0.3s ${NOTIFICATION_TIME - 1}.5s;
   animation-fill-mode: forwards;
   background-color: ${props => lighten('.2', variants[props.variant])};
   border-color: ${props => variants[props.variant]};
@@ -71,28 +95,6 @@ const StyledNotificationContainer = styled.div<
 
   :hover {
     animation-play-state: paused;
-  }
-
-  @keyframes fadein {
-    from {
-      right: 0;
-      opacity: 0;
-    }
-    to {
-      right: 10px;
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeout {
-    from {
-      right: 10px;
-      opacity: 1;
-    }
-    to {
-      right: 0;
-      opacity: 0;
-    }
   }
 `;
 

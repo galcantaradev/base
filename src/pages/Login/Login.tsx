@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import {
   Button,
-  FlexContainer,
+  CentralizedContainer,
   FormikInputField,
   SectionTitle
 } from '../../components';
@@ -16,11 +16,6 @@ import { fieldErrorsToFormikErrors } from '../../utils';
 type Props = {
   history: History;
 };
-
-const LoginContainer = styled(FlexContainer)`
-  align-items: center;
-  justify-content: center;
-`;
 
 const LinkContainer = styled.div`
   display: flex;
@@ -56,7 +51,7 @@ const Login = ({ history }: Props) => {
   };
 
   return (
-    <LoginContainer>
+    <CentralizedContainer>
       <Formik<UserLoginInput>
         onSubmit={onSubmit}
         initialValues={{ email: '', password: '' }}
@@ -93,7 +88,7 @@ const Login = ({ history }: Props) => {
           );
         }}
       </Formik>
-    </LoginContainer>
+    </CentralizedContainer>
   );
 };
 
