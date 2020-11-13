@@ -14,7 +14,7 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const [{ fetching, data }] = useMeQuery();
 
-  const isAuthenticated = useMemo(() => !!data?.me, [data]);
+  const authorized = useMemo(() => !!data?.me, [data]); // or role
 
   if (fetching) {
     return null;
@@ -24,8 +24,8 @@ export const ProtectedRoute = ({
     <Route
       {...rest}
       render={props => {
-        if (!isAuthenticated) {
-          return <Redirect to="/login" />;
+        if (!authorized) {
+          return <Redirect to="/unauthorized" />;
         }
 
         return <Component {...props} />;

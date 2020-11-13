@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import { Route, Switch, useHistory } from 'react-router';
 
 import { useMeQuery } from '../generated/graphql';
@@ -13,11 +13,12 @@ const Profile = lazy(() => import('../pages/Profile/Profile'));
 const Register = lazy(() => import('../pages/Register/Register'));
 const NotFound = lazy(() => import('../pages/Error/NotFound'));
 const Unauthorized = lazy(() => import('../pages/Error/Unauthorized'));
-const YouAreLoggedIn = lazy(() => import('../pages/Error/YouAreLoggedIn'));
 
 export const Routes = () => {
   const history = useHistory();
   const [{ data }] = useMeQuery();
+
+  const logged = useMemo(() => !!data?.me, [data]);
 
   return (
     <Suspense fallback={<LoadingRoutes />}>
@@ -26,19 +27,18 @@ export const Routes = () => {
         <RouteWithRedirect
           path="/login"
           component={Login}
-          redirectTo="/logged-in"
-          condition={history.location.pathname === '/login' && !!data?.me}
+          redirectTo="/"
+          condition={history.location.pathname === '/login' && logged}
         />
         <RouteWithRedirect
           path="/register"
           component={Register}
-          redirectTo="/logged-in"
-          condition={history.location.pathname === '/register' && !!data?.me}
+          redirectTo="/"
+          condition={history.location.pathname === '/register' && logged}
         />
         <ProtectedRoute path="/profile" component={Profile} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/change-password/:token" component={ChangePassword} />
-        <Route path="/logged-in" component={YouAreLoggedIn} />
         <Route path="/unauthorized" component={Unauthorized} />
         <Route path="*" component={NotFound} />
       </Switch>
