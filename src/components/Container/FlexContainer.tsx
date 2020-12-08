@@ -22,7 +22,7 @@ const StyledFlexContainer = styled.div<FlexContainerProps>`
   font-size: ${props => props.fontSize}px;
   min-height: calc(100vh - 55px);
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
 `;
 
 export const FlexContainer = ({ children, ...props }: FlexContainerProps) => {
